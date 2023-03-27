@@ -2,10 +2,15 @@ name: run_tests
 
 on:
   push:
+    branches:
+      - master
     paths:
-      - .github/workflows/run_tests.yml
+      - .github/**
       - investpy/**
       - tests/**
+      - requirements/requirements.txt
+      - requirements/tests-requirements.txt
+      - setup.py
 
 jobs:
   run-investpy-tests:
@@ -30,5 +35,5 @@ jobs:
         pip install .
         pip install .[tests]
     
-    - name: Run pytest tests and check codecov
-      run: pytest --cov-report term --cov=investpy tests/
+    - name: Run pytest tests
+      run: pytest
